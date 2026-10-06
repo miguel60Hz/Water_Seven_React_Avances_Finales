@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 export default function Home() {
     return (
         <>
@@ -17,7 +19,7 @@ export default function Home() {
                     </p>
 
                     <div className="buttons">
-                        <button className="btn-primary">Encontrar agua</button>
+                        <Link to="/fuentes" className="btn-primary">Encontrar agua</Link>
                     </div>
 
                     <div className="stats">

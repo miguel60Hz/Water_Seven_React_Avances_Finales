@@ -23,6 +23,27 @@ export const api = {
         return { mensaje: "Cuenta creada exitosamente" };
     },
 
+    async correoExiste(correo) {
+        await delay(200);
+        return Boolean(mockDB.usuarios.find(u => u.correo === correo));
+    },
+
+    async actualizarPassword(correo, password) {
+        await delay(300);
+        const usuario = mockDB.usuarios.find(u => u.correo === correo);
+        if (!usuario) return { error: "El correo no está registrado" };
+        usuario.password = password;
+        return { mensaje: "Contraseña actualizada correctamente" };
+    },
+
+    async buscarUsuarioPorCorreo(correo) {
+        await delay(200);
+        const usuario = mockDB.usuarios.find(u => u.correo === correo);
+        if (!usuario) return null;
+        const { password: _, ...usuarioSinPass } = usuario;
+        return usuarioSinPass;
+    },
+
     async obtenerPublicaciones() {
         await delay(200);
         return [...mockDB.publicaciones].reverse();

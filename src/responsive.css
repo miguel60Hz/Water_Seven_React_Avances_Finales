@@ -1,4 +1,10 @@
 /*Evitar desbordamiento horizontal*/
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 img {
     max-width: 100%;
 }
@@ -96,6 +102,24 @@ img {
     }
 }
 @media (max-width: 900px) {
+    /* Fuentes de agua */
+    .mapa-wrap {
+        height: 380px;
+    }
+
+    .fuentes-head h1 {
+        font-size: 25px;
+    }
+
+    .buscador-acciones {
+        gap: 10px;
+    }
+
+    .radio-control {
+        order: 3;
+        flex: 1 1 100%;
+    }
+
     .hero-text h1 {
         font-size: 32px;
     }
@@ -133,59 +157,99 @@ img {
 }
 
 @media (max-width: 640px) {
-    /* Barra de navegacion colapsable */
+    /* Fuentes de agua */
+    .fuentes-page {
+        padding: 20px 14px 40px;
+    }
+
+    .fuentes-head {
+        margin-bottom: 20px;
+    }
+
+    .fuentes-head h1 {
+        font-size: 21px;
+    }
+
+    .fuentes-head p {
+        font-size: 13px;
+    }
+
+    .fuentes-buscador {
+        padding: 14px;
+    }
+
+    .buscador-form {
+        padding: 5px 5px 5px 14px;
+        gap: 8px;
+    }
+
+    .buscador-form button {
+        padding: 9px 16px;
+        font-size: 14px;
+    }
+
+    .buscador-acciones button {
+        flex: 1 1 140px;
+        justify-content: center;
+        padding: 11px 14px;
+    }
+
+    .mapa-wrap {
+        height: 320px;
+        border-radius: 12px;
+    }
+
+    .fuentes-panel {
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .fuentes-lista {
+        grid-template-columns: 1fr;
+    }
+
+    /* Barra de navegacion colapsable con menu lateral */
     .navbar {
-        flex-wrap: wrap;
-        row-gap: 12px;
         padding: 10px 16px;
+        gap: 12px;
     }
 
     .logo {
-        flex: 1;
+        flex: 1 1 auto;
+        min-width: 0;
     }
 
     .logo img {
-        height: 46px;
+        height: 42px;
+        flex: none;
     }
 
     .logo h1 {
-        font-size: 20px;
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .nav-toggle {
         display: flex;
+        flex: none;
+        order: 3;
     }
 
-    .navbar nav,
+    /* El nav de escritorio y los botones se sustituyen por el drawer */
+    .nav-desktop,
     .navbar .auth {
         display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
     }
 
-    .navbar.menu-abierto nav,
-    .navbar.menu-abierto .auth {
-        display: flex;
+    .drawer {
+        width: min(300px, 82vw);
+        padding: 20px;
     }
 
-    .navbar nav .badge {
-        display: block;
-        text-align: center;
-    }
-
-    .navbar a {
-        margin: 0;
-    }
-
-    .navbar .auth a,
-    .navbar .auth button {
-        width: 100%;
-    }
-
-    .navbar .auth button {
-        padding: 10px 15px;
+    .drawer-link {
+        padding: 13px 14px;
     }
 
     .auth-user {
@@ -385,5 +449,53 @@ img {
 
     .comentario-input {
         flex-wrap: wrap;
+    }
+}
+/* Autenticacion en movil */
+@media (max-width: 640px) {
+    .auth-background .form-container {
+        width: 100%;
+        padding: 26px 20px;
+    }
+
+    .form-emblema {
+        width: 54px;
+        height: 54px;
+        font-size: 22px;
+    }
+
+    .codigo-caja {
+        gap: 6px;
+    }
+
+    .codigo-caja input {
+        padding: 12px 0;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .social-botones {
+        grid-template-columns: 1fr;
+    }
+
+    .form-enlaces {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .reglas-password {
+        padding: 11px 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .codigo-caja {
+        gap: 4px;
+    }
+
+    .codigo-caja input {
+        font-size: 16px;
+        padding: 11px 0;
     }
 }
