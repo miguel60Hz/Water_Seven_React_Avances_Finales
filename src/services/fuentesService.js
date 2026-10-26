@@ -38,10 +38,11 @@ async function consultarOverpass(consulta) {
  * Busca fuentes de agua reales cerca de una ubicacion.
  * Usa Overpass API (datos abiertos de OpenStreetMap), no requiere clave.
  */
-export async function buscarFuentes({ lat, lng, radio = 2000 }) {
+export async function buscarFuentes({ lat, lng, radio = 3000 }) {
+    // Consulta simplificada para máxima compatibilidad con Overpass
     const consulta = `
-        [out:json][timeout:20];
-        node["amenity"~"^(drinking_water|water_point|watering_place)$"](around:${radio},${lat},${lng});
+        [out:json][timeout:25];
+        node["amenity"~"^(drinking_water|water_point|watering_place|fountain)$"](around:${radio},${lat},${lng});
         out;
     `;
 

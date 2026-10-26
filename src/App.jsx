@@ -1,3 +1,7 @@
+import './styles/base.css';
+import './styles/ui.css';
+import './styles/formulario.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -9,9 +13,6 @@ import Chat from './pages/Chat';
 import Fuentes from './pages/Fuentes';
 import Verificacion from './pages/Verificacion';
 import NuevaPassword from './pages/NuevaPassword';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import './index.css';
-import './responsive.css';
 
 export default function App() {
     return (

@@ -1,3 +1,4 @@
+import '../styles/pages/Comunidad.css';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
@@ -10,10 +11,6 @@ export default function Comunidad() {
     const [tipoPost, setTipoPost] = useState('general');
     const [comentariosInputs, setComentariosInputs] = useState({});
 
-    useEffect(() => {
-        cargarPublicaciones();
-    }, []);
-
     const cargarPublicaciones = async () => {
         try {
             const pubs = await api.obtenerPublicaciones();
@@ -22,6 +19,10 @@ export default function Comunidad() {
             console.error("Error al cargar publicaciones:", e);
         }
     };
+
+    useEffect(() => {
+        cargarPublicaciones();
+    }, []);
 
     const handlePublicar = async () => {
         if (!usuario) { alert("Debes iniciar sesión para publicar"); return; }

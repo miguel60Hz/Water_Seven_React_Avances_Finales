@@ -1,4 +1,5 @@
 
+import '../styles/pages/Home.css';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -9,33 +10,23 @@ export default function Home() {
                     <span className="badge">AGUA POTABLE PARA TODOS</span>
 
                     <h1>
-                        El agua es un <span className="highlight">derecho</span>,<br />
-                        no un privilegio.
+                        El agua es un <span className="highlight">derecho</span>, no un privilegio.
                     </h1>
 
                     <p>
-                        Water Seven localiza fuentes de agua potable,
-                        guía su purificación y conecta comunidades.
+                        Water Seven localiza fuentes de agua potable, guía su purificación y conecta
+                        comunidades para asegurar el acceso a este recurso vital.
                     </p>
 
                     <div className="buttons">
-                        <Link to="/fuentes" className="btn-primary">Encontrar agua</Link>
+                        <Link to="/fuentes" className="btn-primary">
+                            Encontrar agua
+                        </Link>
+                        <Link to="/registro" className="btn-secondary">
+                            Únete a la misión
+                        </Link>
                     </div>
 
-                    <div className="stats">
-                        <div>
-                            <h3>200M</h3>
-                            <p>Sin acceso</p>
-                        </div>
-                        <div>
-                            <h3>3.500M</h3>
-                            <p>Sin saneamiento</p>
-                        </div>
-                        <div>
-                            <h3>1.4M</h3>
-                            <p>Muertes al año</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 

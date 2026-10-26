@@ -1,0 +1,51 @@
+/* Verificacion: caja de los 6 digitos del codigo */
+
+.codigo-caja {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.codigo-caja input {
+    width: 100%;
+    padding: 14px 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #2d4f4f;
+    background: #f0f6f6;
+    border: 1.5px solid #c8e0e0;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.codigo-caja input:focus {
+    border-color: #3dadae;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(61, 173, 174, 0.15);
+}
+
+@media (max-width: 640px) {
+    .codigo-caja {
+        gap: 6px;
+    }
+
+    .codigo-caja input {
+        padding: 12px 0;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .codigo-caja {
+        gap: 4px;
+    }
+
+    .codigo-caja input {
+        font-size: 16px;
+        padding: 11px 0;
+    }
+}

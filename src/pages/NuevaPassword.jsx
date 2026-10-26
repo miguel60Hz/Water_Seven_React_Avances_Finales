@@ -1,3 +1,4 @@
+import '../styles/pages/NuevaPassword.css';
 import { useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { api } from '../services/api';

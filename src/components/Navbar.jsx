@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import '../styles/components/Navbar.css';
 
 const ENLACES = [
     { to: '/', texto: 'Inicio', icono: 'fa-house' },
@@ -53,8 +54,8 @@ export default function Navbar() {
                         </div>
                     ) : (
                         <>
-                            <Link to="/login"><button className="btn-outline">Iniciar sesión</button></Link>
-                            <Link to="/registro"><button className="btn-primary">Registrarse</button></Link>
+                            <Link to="/login" className="btn-outline">Iniciar sesión</Link>
+                            <Link to="/registro" className="btn-primary">Registrarse</Link>
                         </>
                     )}
                 </div>

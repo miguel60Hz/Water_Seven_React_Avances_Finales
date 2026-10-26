@@ -1,3 +1,4 @@
+import '../styles/pages/Registro.css';
 import { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -190,7 +191,20 @@ export default function Registro() {
                         ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
                     </p>
 
+                    <div className="divisor-social">
+                        <span>O CONTINÚA CON</span>
+                    </div>
+
                     <SocialButtons onSelect={socialPendiente} />
+
+                    <div className="form-beneficios">
+                        <h3>¿Por qué unirte a Water Seven?</h3>
+                        <ul>
+                            <li><i className="fa-solid fa-map-marked-alt"></i> Localiza fuentes de agua potable cerca de ti</li>
+                            <li><i className="fa-solid fa-book-open"></i> Guías de purificación de agua</li>
+                            <li><i className="fa-solid fa-comments"></i> Chat con comunidades para compartir alertas</li>
+                        </ul>
+                    </div>
                 </form>
             </div>
         </div>

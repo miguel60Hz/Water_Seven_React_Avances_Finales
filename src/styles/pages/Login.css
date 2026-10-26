@@ -1,0 +1,32 @@
+/* Login: enlaces del formulario de acceso */
+
+.form-enlaces {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.enlace-plano {
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #3dadae;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.enlace-plano:hover {
+    text-decoration: underline;
+    color: #2d4f4f;
+}
+
+@media (max-width: 640px) {
+    .form-enlaces {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
