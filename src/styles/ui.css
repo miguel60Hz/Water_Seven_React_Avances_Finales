@@ -1,0 +1,270 @@
+/* Elementos compartidos entre componentes: botones, badges y mensajes */
+
+.btn-primary {
+    background: #5ec4c5;
+    border: 2px solid #4ab0b1;
+    padding: 14px 28px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #4ab0b1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(61, 173, 174, 0.3);
+    text-decoration: none;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    border: 1px solid #5ec4c5;
+    background: transparent;
+    padding: 14px 28px;
+    border-radius: 10px;
+    color: #2d4f4f;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-outline:hover {
+    background: #dff2f2;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.btn-outline:active {
+    transform: translateY(0);
+}
+
+.badge {
+    background: #dff2f2;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    color: #2d4f4f;
+}
+
+.error-msg {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.aviso-msg {
+    padding: 11px 14px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    background: #eaf4f4;
+    border: 1px solid #c8e0e0;
+    color: #4a6b6b;
+    font-size: 13px;
+    text-align: left;
+}
+
+.empty-state {
+    color: #888;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state i {
+    font-size: 48px;
+    color: #b9d8d5;
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Campo de formulario con etiqueta, icono y control de contraseña */
+.campo {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a6b6b;
+}
+
+.campo-input,
+.campo-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-input > i {
+    position: absolute;
+    left: 14px;
+    color: #7daaaa;
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.campo-input input,
+.campo-password input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1.5px solid #c8e0e0;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    background: #f0f6f6;
+    color: #2d4f4f;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.campo-input input {
+    padding-left: 40px;
+}
+
+.campo-input input:focus,
+.campo-password input:focus {
+    border-color: #3dadae;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(61, 173, 174, 0.15);
+}
+
+.campo-password input {
+    padding-right: 46px;
+}
+
+.campo-password.con-error input {
+    border-color: #e27777;
+    background: #fdf4f4;
+}
+
+.campo-error {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #c94f4f;
+}
+
+.ver-password {
+    position: absolute;
+    right: 6px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 9px;
+    color: #4a6b6b;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ver-password:hover {
+    background: #dff2f2;
+    color: #2d4f4f;
+}
+
+/* Botones de inicio de sesión con redes sociales */
+.social {
+    margin-top: 22px;
+}
+
+.social-separador {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.social-separador span {
+    flex: 1;
+    height: 1px;
+    background: #d8eaea;
+}
+
+.social-separador em {
+    font-style: normal;
+    font-size: 12px;
+    color: #9ab5b5;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.social-botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+}
+
+.btn-social i {
+    font-size: 16px;
+}
+
+.btn-google {
+    background: #fff;
+    border: 1.5px solid #d8eaea;
+    color: #3c4043;
+}
+
+.btn-google:hover {
+    background: #f7f9f9;
+    border-color: #c8e0e0;
+    box-shadow: 0 6px 16px rgba(61, 173, 174, 0.18);
+}
+
+.btn-facebook {
+    background: #1877f2;
+    border: 1.5px solid #1877f2;
+    color: #fff;
+}
+
+.btn-facebook:hover {
+    background: #1466d8;
+    box-shadow: 0 6px 16px rgba(24, 119, 242, 0.28);
+}
+
+.btn-social:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+    .social-botones {
+        grid-template-columns: 1fr;
+    }
+}
