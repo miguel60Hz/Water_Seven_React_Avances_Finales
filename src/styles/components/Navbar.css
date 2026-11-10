@@ -107,7 +107,11 @@
     background: rgba(16, 49, 47, 0.45);
     opacity: 0;
     visibility: hidden;
+<<<<<<< HEAD
     z-index: 999;
+=======
+    z-index: 190;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -126,6 +130,7 @@ body.menu-abierto {
     right: 0;
     height: 100vh;
     height: 100dvh;
+<<<<<<< HEAD
     width: min(300px, 88vw);
     max-width: 100vw;
     background: #fff;
@@ -134,29 +139,57 @@ body.menu-abierto {
     display: flex;
     flex-direction: column;
     padding: 0;
+=======
+    width: min(320px, 92vw);
+    max-width: 100vw;
+    background: #fff;
+    box-shadow: -8px 0 32px rgba(16, 49, 47, 0.18);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     transform: translateX(105%);
     visibility: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
     transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         visibility 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+<<<<<<< HEAD
+=======
+    text-align: center;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-head {
     display: flex;
+<<<<<<< HEAD
     align-items: center;
     justify-content: space-between;
     padding: 20px 24px;
     border-bottom: 1px solid #c8e0e0;
     flex: none;
     gap: 12px;
+=======
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #c8e0e0;
+    margin-bottom: 8px;
+    flex: none;
+    gap: 8px;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-head h2 {
     font-size: 20px;
     color: #2d4f4f;
+<<<<<<< HEAD
     margin: 0;
     font-weight: 700;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-close {
@@ -183,17 +216,31 @@ body.menu-abierto {
 .drawer-nav {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 6px;
     flex: 1;
     padding: 20px 20px;
     overflow-y: auto;
+=======
+    gap: 4px;
+    flex: 1;
+    padding: 10px 0;
+    overflow-y: auto;
+    align-items: center;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-link {
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     gap: 14px;
     padding: 14px 18px;
+=======
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     border-radius: 12px;
     color: #2d4f4f;
     text-decoration: none;
@@ -201,6 +248,7 @@ body.menu-abierto {
     font-weight: 500;
     transition: background 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
     width: 100%;
+<<<<<<< HEAD
     text-align: left;
     border: 1px solid transparent;
 }
@@ -218,6 +266,22 @@ body.menu-abierto {
     padding-left: 22px;
     color: #1a3a3a;
     border-color: #c8e0e0;
+=======
+    max-width: 260px;
+}
+
+.drawer-link i {
+    width: 22px;
+    text-align: center;
+    color: #3dadae;
+    font-size: 15px;
+}
+
+.drawer-link:hover {
+    background: #dff2f2;
+    padding-left: 20px;
+    color: #1a3a3a;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer.abierto {
@@ -229,10 +293,16 @@ body.menu-abierto {
     display: flex;
     flex-direction: column;
     gap: 10px;
+<<<<<<< HEAD
     padding: 20px 24px;
     border-top: 1px solid #c8e0e0;
     flex: none;
     background: #f8fcfc;
+=======
+    padding-top: 16px;
+    border-top: 1px solid #c8e0e0;
+    flex: none;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-foot .full {
@@ -241,6 +311,7 @@ body.menu-abierto {
     justify-content: center;
     width: 100%;
     padding: 12px 18px;
+<<<<<<< HEAD
     border-radius: 12px;
     font-size: 15px;
     font-weight: 600;
@@ -252,6 +323,14 @@ body.menu-abierto {
 
 .drawer-foot .full:hover {
     transform: translateY(-1px);
+=======
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-user {
@@ -259,18 +338,28 @@ body.menu-abierto {
     align-items: center;
     gap: 10px;
     padding: 12px 16px;
+<<<<<<< HEAD
     background: #fff;
+=======
+    background: #f0f6f6;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     border-radius: 12px;
     font-size: 15px;
     color: #2d4f4f;
     font-weight: 500;
     margin-bottom: 4px;
+<<<<<<< HEAD
     border: 1px solid #c8e0e0;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .drawer-user i {
     color: #3dadae;
+<<<<<<< HEAD
     font-size: 16px;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 /* Tablet y móviles: ocultar nav desktop, mostrar drawer */

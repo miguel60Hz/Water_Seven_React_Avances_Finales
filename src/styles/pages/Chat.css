@@ -16,7 +16,12 @@
     padding: 30px 20px;
     text-align: center;
     margin-bottom: 0;
+<<<<<<< HEAD
     border-radius: 0 0 20px 20px;
+=======
+    margin-left: 20px;
+    margin-right: 20px;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .header-contenido {
@@ -66,7 +71,11 @@
 /* Tarjeta principal del chat */
 .chat-card {
     max-width: 900px;
+<<<<<<< HEAD
     margin: 20px auto 80px;
+=======
+    margin: -20px auto 80px;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
@@ -76,8 +85,11 @@
     height: 65vh;
     max-height: 700px;
     border: 1px solid rgba(255, 255, 255, 0.8);
+<<<<<<< HEAD
     position: relative;
     z-index: 2;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 /* Bienvenida */

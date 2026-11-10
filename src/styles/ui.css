@@ -26,6 +26,7 @@
     transform: translateY(0);
 }
 
+<<<<<<< HEAD
 .btn-primary:disabled {
     background: #a9d6d6;
     border-color: #a9d6d6;
@@ -82,6 +83,8 @@
     box-shadow: none;
 }
 
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 .btn-outline {
     border: 1px solid #5ec4c5;
     background: transparent;
@@ -107,6 +110,7 @@
     transform: translateY(0);
 }
 
+<<<<<<< HEAD
 .btn-outline:disabled {
     border-color: #a9d6d6;
     color: #a9d6d6;
@@ -119,6 +123,8 @@
     transform: none;
 }
 
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 .badge {
     background: #dff2f2;
     padding: 6px 12px;

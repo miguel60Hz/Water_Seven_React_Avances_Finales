@@ -2,15 +2,22 @@
 
 .form-container {
     max-width: 460px;
+<<<<<<< HEAD
     margin: 0 auto;
+=======
+    margin: 40px auto;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     padding: 48px 32px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+<<<<<<< HEAD
     position: relative;
     z-index: 2;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .form-container h2 {
@@ -122,6 +129,7 @@
     background: url("/imagenes/fondo-auth.jpg") no-repeat center center fixed,
         linear-gradient(135deg, rgba(224, 247, 250, 0.6) 0%, rgba(178, 235, 242, 0.6) 50%, rgba(128, 222, 234, 0.6) 100%);
     background-size: cover;
+<<<<<<< HEAD
     min-height: 100vh;
     padding-top: 95px;
     display: flex;
@@ -129,6 +137,12 @@
     justify-content: center;
     overflow: hidden;
     position: relative;
+=======
+    min-height: calc(100vh - 95px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .auth-background .form-container {
@@ -136,8 +150,11 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     margin: 20px;
     width: min(460px, 92vw);
+<<<<<<< HEAD
     position: relative;
     z-index: 2;
+=======
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 /* Emblema circular del formulario */

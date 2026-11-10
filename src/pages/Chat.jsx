@@ -51,6 +51,15 @@ export default function Chat() {
         }
     }, [mensajes]);
 
+    const cargarMensajes = async () => {
+        try {
+            const msgs = await api.obtenerMensajes();
+            setMensajes(msgs);
+        } catch (e) {
+            console.error("Error al cargar mensajes:", e);
+        }
+    };
+
     const handleEnviar = async () => {
         if (!usuario) { alert("Debes iniciar sesión para chatear"); return; }
         if (nuevoMensaje.trim() === "") return;
@@ -68,70 +77,14 @@ export default function Chat() {
 
     return (
         <section className="page">
-            <div className="chat-header">
-                <div className="header-contenido">
-                    <div className="estado-conexion">
-                        <span className="punto-en-linea"></span>
-                        <span>{usuariosEnLinea} en línea</span>
-                    </div>
-                    <h1>Chat de Comunidad</h1>
-                    <p className="chat-subtitle">
-                        Conversa con otros miembros de Water Seven sobre fuentes de agua,
-                        alertas y cuidados del recurso hídrico.
+            <h1>Chat</h1>
+
+            <div className="chat-box" ref={chatRef}>
+                {mensajes.map(m => (
+                    <p key={m.id}>
+                        <strong>{m.remitente_nombre || 'Anónimo'}:</strong> {m.contenido}
                     </p>
-                </div>
-            </div>
-
-            <div className="chat-card">
-                <div className="chat-bienvenida">
-                    <div className="bienvenida-texto">
-                        <i className="fa-regular fa-handshake"></i>
-                        <span>¡Bienvenido al chat de la comunidad!</span>
-                    </div>
-                </div>
-
-                <div className="chat-mensajes-area" ref={chatRef}>
-                    {mensajes.length === 0 ? (
-                        <div className="chat-vacio">
-                            <div className="vacio-icono">
-                                <i className="fa-regular fa-comments"></i>
-                            </div>
-                            <h3>Sin conversaciones aún</h3>
-                            <p>Inicia tú la conversación y conecta con la comunidad Water Seven.</p>
-                        </div>
-                    ) : (
-                        <div className="chat-mensajes">
-                            {mensajes.map(m => {
-                                const propio = esMensajePropio(m.remitente_id);
-                                const iniciales = getInitials(m.remitente_nombre);
-                                const colorAvatar = getAvatarColor(m.remitente_nombre || '');
-                                const fecha = new Date(m.fecha_creacion || m.fecha_publicacion || new Date());
-                                const hora = fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                                return (
-                                    <div key={m.id} className={`chat-mensaje ${propio ? 'mensaje-propio' : 'mensaje-otro'}`}>
-                                        {!propio && (
-                                            <div className="mensaje-avatar" style={{ backgroundColor: colorAvatar }}>
-                                                {iniciales}
-                                            </div>
-                                        )}
-                                        <div className="mensaje-burbuja">
-                                            {!propio && (
-                                                <span className="mensaje-nombre">{m.remitente_nombre || 'Anónimo'}</span>
-                                            )}
-                                            <span className="mensaje-texto">{m.contenido}</span>
-                                            <span className="mensaje-hora">{hora}</span>
-                                        </div>
-                                        {propio && (
-                                            <div className="mensaje-avatar" style={{ backgroundColor: '#3dadae' }}>
-                                                {iniciales}
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                ))}
             </div>
 
             <div className="chat-enviar">

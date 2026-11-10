@@ -46,7 +46,11 @@ export default function Fuentes() {
     const [fuentes, setFuentes] = useState([]);
     const [cargando, setCargando] = useState(false);
     const [error, setError] = useState('');
+<<<<<<< HEAD
     const [radio, setRadio] = useState(3000);
+=======
+    const [radio, setRadio] = useState(3000); // 3km por defecto
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
     const [ubicacionInicial, setUbicacionInicial] = useState(false);
 
     const cargar = async (centro = pos, r = radio) => {
@@ -56,14 +60,20 @@ export default function Fuentes() {
             const resultado = await buscarFuentes({ lat: centro.lat, lng: centro.lng, radio: r });
             setFuentes(resultado);
             if (!resultado.length) setError(`No se encontraron fuentes en ${Math.round(r/1000)}km a la redonda.`);
+<<<<<<< HEAD
         } catch (e) {
             setError('No se pudo consultar el servicio. Revisa tu conexión.');
             console.error('Error al cargar fuentes:', e);
+=======
+        } catch {
+            setError('No se pudo consultar el servicio. Revisa tu conexión.');
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
         } finally {
             setCargando(false);
         }
     };
 
+<<<<<<< HEAD
     // Auto-ubicación al cargar la página
     useEffect(() => {
         if (!ubicacionInicial) {
@@ -98,6 +108,30 @@ export default function Fuentes() {
                 setUbicacionInicial(true);
                 setError('Tu navegador no soporta geolocalización. Puedes buscar manualmente.');
             }
+=======
+    // Auto-ubicación al cargar la página - SE EJECUTA AUTOMÁTICAMENTE
+    useEffect(() => {
+        if (!ubicacionInicial && navigator.geolocation) {
+            setCargando(true);
+            navigator.geolocation.getCurrentPosition(
+                async (posActual) => {
+                    const centro = { 
+                        lat: posActual.coords.latitude, 
+                        lng: posActual.coords.longitude, 
+                        nombre: 'Tu ubicación' 
+                    };
+                    setPos(centro);
+                    setUbicacionInicial(true);
+                    await cargar(centro, 3000); // Buscar en 3km automáticamente
+                },
+                (err) => {
+                    setUbicacionInicial(true);
+                    setError('No se pudo obtener tu ubicación automáticamente. Puedes buscar manualmente o hacer clic en "Mi ubicación".');
+                    setCargando(false);
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+>>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
         }
     }, [ubicacionInicial]);
 
