@@ -8,15 +8,17 @@ import { buscarFuentes, geocodificar, UBICACION_DEFAULT } from '../services/fuen
 const ICONO = L.divIcon({
     className: 'fuente-marker',
     html: '<span><i class="fa-solid fa-droplet"></i></span>',
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
+    iconSize: [38, 38],
+    iconAnchor: [19, 19],
+    popupAnchor: [0, -19],
 });
 
 const ICONO_USER = L.divIcon({
     className: 'user-marker',
     html: '<span><i class="fa-solid fa-location-dot"></i></span>',
-    iconSize: [34, 34],
-    iconAnchor: [17, 17],
+    iconSize: [38, 38],
+    iconAnchor: [19, 19],
+    popupAnchor: [0, -19],
 });
 
 function Centrar({ pos }) {
@@ -32,6 +34,10 @@ const etiquetas = {
     water_point: 'Punto de agua',
     watering_place: 'Bebedero',
     water_tower: 'Tanque de agua',
+    water_tap: 'Grifo de agua',
+    water_well: 'Pozo de agua',
+    spring: 'Manantial',
+    fountain: 'Fuente ornamental',
 };
 
 const formatoRadio = (r) => (r >= 1000 ? `${(r / 1000).toFixed(1)} km` : `${r} m`);

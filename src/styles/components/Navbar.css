@@ -146,19 +146,6 @@ body.menu-abierto {
     overscroll-behavior: contain;
     transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         visibility 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-    text-align: center;
-}
-
-.drawer-head {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #c8e0e0;
-    margin-bottom: 8px;
-    flex: none;
-    gap: 8px;
 }
 
 .drawer-head h2 {
@@ -233,9 +220,6 @@ body.menu-abierto {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-top: 16px;
-    border-top: 1px solid #c8e0e0;
-    flex: none;
 }
 
 .drawer-foot .full {
@@ -244,12 +228,6 @@ body.menu-abierto {
     justify-content: center;
     width: 100%;
     padding: 12px 18px;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .drawer-user {
@@ -257,7 +235,6 @@ body.menu-abierto {
     align-items: center;
     gap: 10px;
     padding: 12px 16px;
-    background: #f0f6f6;
     border-radius: 12px;
     font-size: 15px;
     color: #2d4f4f;

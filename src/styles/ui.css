@@ -26,31 +26,6 @@
     transform: translateY(0);
 }
 
-.btn-outline {
-    border: 1px solid #5ec4c5;
-    background: transparent;
-    padding: 14px 28px;
-    border-radius: 10px;
-    color: #2d4f4f;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-outline:hover {
-    background: #dff2f2;
-    transform: translateY(-2px);
-    text-decoration: none;
-}
-
-.btn-outline:active {
-    transform: translateY(0);
-}
-
 .badge {
     background: #dff2f2;
     padding: 6px 12px;

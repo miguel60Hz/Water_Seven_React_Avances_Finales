@@ -26,32 +26,6 @@ export default function Home() {
                             Únete a la misión
                         </Link>
                     </div>
-
-                    <div className="hero-divider"></div>
-
-                    <div className="stats">
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-tint"></i>
-                            </div>
-                            <h3>200M</h3>
-                            <p>Sin acceso</p>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-toilet"></i>
-                            </div>
-                            <h3>3.500M</h3>
-                            <p>Sin saneamiento</p>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-heartbeat"></i>
-                            </div>
-                            <h3>1.4M</h3>
-                            <p>Muertes al año</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
