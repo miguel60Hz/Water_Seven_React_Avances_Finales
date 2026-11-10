@@ -21,7 +21,7 @@ export default function Verificacion() {
     const [digitos, setDigitos] = useState(['', '', '', '', '', '']);
     const [error, setError] = useState('');
     const [reenviando, setReenviando] = useState(false);
-    const [aviso, setAviso] = useState('');
+    const [aviso, setAviso] = useState((location.state && location.state.aviso) || '');
 
     useEffect(() => {
         if (!datosGuardados) {
@@ -109,7 +109,9 @@ borrarCodigoGuardado();
             const codigo = generarCodigo();
             guardarCodigo(correo, codigo, tipo);
             const res = await enviarCodigo({ correo, nombre: '', codigo, tipo });
-            setAviso(res.error || 'Te enviamos un código nuevo. Revisa tu correo.');
+            setAviso(res.error
+                ? 'No pudimos reenviar el correo ahora. Intenta de nuevo en unos minutos.'
+                : 'Te enviamos un código nuevo. Revisa tu correo.');
         } catch {
             setError('No se pudo reenviar el código');
         } finally {

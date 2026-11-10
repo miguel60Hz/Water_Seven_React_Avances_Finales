@@ -4,34 +4,43 @@ const SERVIDORES = [
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
     'https://overpass.private.coffee/api/interpreter',
+    'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
 ];
+
+// Cada espejo se corta rapido para no dejar la pantalla cargando 1 minuto
+// entero cuando uno esta saturado.
+const TIMEOUT_SERVIDOR = 12000;
 
 // Overpass y Nominatim exigen un User-Agent identificable.
 // Si no lo envian, responden 403 o 429 y bloquean la peticion.
 const USER_AGENT = 'WaterSeven/1.0 (https://github.com/water-seven; proyecto educativo de acceso al agua potable)';
 
 async function consultarOverpass(consulta) {
-    for (const url of SERVIDORES) {
-        try {
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'User-Agent': USER_AGENT,
-                },
-                body: 'data=' + encodeURIComponent(consulta),
-                signal: AbortSignal.timeout(25000),
-            });
-
-            if (!res.ok) continue;
-
+    // Se consultan todos los espejos a la vez y se usa el primero que responda.
+    // En serie, con servidores saturados, la pantalla podia estar cargando
+    // mas de 40 segundos.
+    const intentos = SERVIDORES.map((url) =>
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'User-Agent': USER_AGENT,
+            },
+            body: 'data=' + encodeURIComponent(consulta),
+            signal: AbortSignal.timeout(TIMEOUT_SERVIDOR),
+        }).then(async (res) => {
+            if (!res.ok) throw new Error(`respuesta ${res.status}`);
             const datos = await res.json();
-            if (Array.isArray(datos.elements)) return datos.elements;
-        } catch {
-            // este servidor fallo, se intenta el siguiente
-        }
+            if (!Array.isArray(datos.elements)) throw new Error('respuesta sin elementos');
+            return datos.elements;
+        })
+    );
+
+    try {
+        return await Promise.any(intentos);
+    } catch {
+        throw new Error('No se pudo consultar el servicio de fuentes');
     }
-    throw new Error('No se pudo consultar el servicio de fuentes');
 }
 
 /**
@@ -39,22 +48,30 @@ async function consultarOverpass(consulta) {
  * Usa Overpass API (datos abiertos de OpenStreetMap), no requiere clave.
  */
 export async function buscarFuentes({ lat, lng, radio = 2000 }) {
+    const AMENIDADES_AGUA = '^(drinking_water|water_point|watering_place)$';
     const consulta = `
-        [out:json][timeout:20];
-        node["amenity"~"^(drinking_water|water_point|watering_place)$"](around:${radio},${lat},${lng});
+        [out:json][timeout:25];
+        node["amenity"~"${AMENIDADES_AGUA}"](around:${radio},${lat},${lng});
         out;
+        way["amenity"~"${AMENIDADES_AGUA}"](around:${radio},${lat},${lng});
+        out center;
     `;
 
     const elementos = await consultarOverpass(consulta);
 
     return elementos
         .map(el => {
-            if (typeof el.lat !== 'number' || typeof el.lon !== 'number') return null;
+            // Los nodos traen lat/lon; las vias y relaciones los traen en center
+            // cuando se pide "out center".
+            const lat = typeof el.lat === 'number' ? el.lat : el.center?.lat;
+            const lng = typeof el.lon === 'number' ? el.lon : el.center?.lon;
+            if (typeof lat !== 'number' || typeof lng !== 'number') return null;
+
             const tags = el.tags || {};
             return {
                 id: el.type + '-' + el.id,
-                lat: el.lat,
-                lng: el.lon,
+                lat,
+                lng,
                 tipo: tags.amenity || 'fuente',
                 nombre: tags.name || tags['name:es'] || null,
                 operador: tags.operator || null,

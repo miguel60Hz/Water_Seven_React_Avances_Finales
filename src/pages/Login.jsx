@@ -85,12 +85,17 @@ export default function Login() {
                 tipo: 'recuperacion'
             });
 
-            if (res.error) {
-                setError(res.error);
-                return;
-            }
-
-            navigate('/verificacion', { state: { correo: correo.trim(), tipo: 'recuperacion' } });
+            // Si el correo falla no se bloquea el flujo: el código quedó guardado
+            // y se puede reenviar desde la pantalla de verificación.
+            navigate('/verificacion', {
+                state: {
+                    correo: correo.trim(),
+                    tipo: 'recuperacion',
+                    aviso: res.error
+                        ? 'Todavía no pudimos enviarte el correo. Usa «Reenviar» en unos minutos.'
+                        : ''
+                }
+            });
         } catch {
             setError('Error de conexión con el servidor');
         } finally {
@@ -154,10 +159,6 @@ export default function Login() {
                         <p className="form-pie">
                             ¿No tienes cuenta? <Link to="/registro">Crear cuenta</Link>
                         </p>
-
-                        <div className="divisor-social">
-                            <span>O CONTINÚA CON</span>
-                        </div>
 
                         <SocialButtons onSelect={socialPendiente} />
 
