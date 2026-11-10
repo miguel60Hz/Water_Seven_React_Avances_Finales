@@ -36,11 +36,6 @@
     gap: 10px;
     box-shadow: 0 4px 10px rgba(61, 173, 174, 0.12);
     flex-wrap: wrap;
-<<<<<<< HEAD
-    position: relative;
-    z-index: 2;
-=======
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .publicar input {

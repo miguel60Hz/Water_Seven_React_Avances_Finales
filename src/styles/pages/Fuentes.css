@@ -29,135 +29,6 @@
     padding: 18px;
     box-shadow: 0 4px 14px rgba(61, 173, 174, 0.12);
     margin-bottom: 20px;
-<<<<<<< HEAD
-    position: relative;
-    z-index: 2;
-=======
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
-}
-
-.buscador-form {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 6px 6px 14px;
-    border: 1.5px solid #c8e0e0;
-    border-radius: 30px;
-    background: #f0f6f6;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    flex-wrap: wrap;
-}
-
-.buscador-form:focus-within {
-    border-color: #3dadae;
-    box-shadow: 0 0 0 4px rgba(61, 173, 174, 0.12);
-}
-
-.buscador-form i {
-    color: #7daaaa;
-    font-size: 15px;
-    flex: none;
-}
-
-.buscador-form input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-family: inherit;
-    font-size: 15px;
-    color: #2d4f4f;
-    padding: 8px 0;
-}
-
-.buscador-form button {
-    padding: 9px 18px;
-    border-radius: 22px;
-    white-space: nowrap;
-    flex: none;
-}
-
-.buscador-acciones {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-    justify-content: center;
-}
-
-.buscador-acciones button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 16px;
-    border-radius: 20px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.buscador-acciones button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.radio-control {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1 1 100%;
-    min-width: 150px;
-    font-size: 13px;
-    color: #4d7a7a;
-    font-weight: 500;
-}
-
-.radio-control input[type="range"] {
-    flex: 1;
-    min-width: 80px;
-    accent-color: #3dadae;
-}
-
-.info-msg {
-    color: #3d8a8c;
-    background: #dff2f2;
-    font-size: 14px;
-    margin-bottom: 18px;
-    padding: 12px 16px;
-    border-radius: 10px;
-}
-
-.mapa-wrap {
-    height: 460px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 18px rgba(61, 173, 174, 0.18);
-    margin-bottom: 26px;
-<<<<<<< HEAD
-    position: relative;
-    z-index: 1;
-}
-
-/* Asegurar que los controles de Leaflet no tengan z-index excesivo */
-.leaflet-control-container {
-    z-index: 500 !important;
-}
-
-.leaflet-pane,
-.leaflet-map-pane {
-    z-index: 1 !important;
-}
-
-.leaflet-top,
-.leaflet-bottom {
-    z-index: 500 !important;
-=======
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .mapa {
@@ -170,20 +41,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
-    width: 38px;
-    height: 38px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-    border: 2px solid #fff;
-=======
-    width: 34px;
-    height: 34px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .fuente-marker span {
@@ -198,17 +55,6 @@
 .user-marker i {
     transform: rotate(45deg);
     color: #fff;
-<<<<<<< HEAD
-    font-size: 16px;
-}
-
-/* Asegurar que los marcadores tengan z-index alto */
-.leaflet-marker-icon.fuente-marker,
-.leaflet-marker-icon.user-marker {
-    z-index: 1000 !important;
-=======
-    font-size: 14px;
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .fuentes-panel {
@@ -216,11 +62,6 @@
     border-radius: 15px;
     padding: 24px;
     box-shadow: 0 4px 14px rgba(61, 173, 174, 0.12);
-<<<<<<< HEAD
-    position: relative;
-    z-index: 2;
-=======
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
 }
 
 .fuentes-panel h2 {

@@ -22,43 +22,10 @@ export default function Home() {
                         <Link to="/fuentes" className="btn-primary">
                             Encontrar agua
                         </Link>
-<<<<<<< HEAD
-                        <Link to="/registro" className="btn-secondary">
-=======
                         <Link to="/registro" className="btn-outline">
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
                             Únete a la misión
                         </Link>
                     </div>
-
-<<<<<<< HEAD
-=======
-                    <div className="hero-divider"></div>
-
-                    <div className="stats">
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-tint"></i>
-                            </div>
-                            <h3>200M</h3>
-                            <p>Sin acceso</p>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-toilet"></i>
-                            </div>
-                            <h3>3.500M</h3>
-                            <p>Sin saneamiento</p>
-                        </div>
-                        <div className="stat-item">
-                            <div className="stat-icon">
-                                <i className="fas fa-heartbeat"></i>
-                            </div>
-                            <h3>1.4M</h3>
-                            <p>Muertes al año</p>
-                        </div>
-                    </div>
->>>>>>> a4ac441eb6a0159af851a0ddbf2fdada00ff8a4b
                 </div>
             </section>
 

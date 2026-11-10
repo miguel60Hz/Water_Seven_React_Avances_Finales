@@ -51,15 +51,6 @@ export default function Chat() {
         }
     }, [mensajes]);
 
-    const cargarMensajes = async () => {
-        try {
-            const msgs = await api.obtenerMensajes();
-            setMensajes(msgs);
-        } catch (e) {
-            console.error("Error al cargar mensajes:", e);
-        }
-    };
-
     const handleEnviar = async () => {
         if (!usuario) { alert("Debes iniciar sesión para chatear"); return; }
         if (nuevoMensaje.trim() === "") return;
