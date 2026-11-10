@@ -260,3 +260,22 @@
         padding: 14px;
     }
 }
+
+/* Tabletas (641px a 1024px): tamanos de letra comodos para esa pantalla */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .fuentes-head h1 {
+        font-size: 25px;
+    }
+
+    .fuentes-head p {
+        font-size: 14px;
+    }
+
+    .fuentes-panel h2 {
+        font-size: 18px;
+    }
+
+    .mapa-wrap {
+        height: 420px;
+    }
+}

@@ -1,5 +1,5 @@
 import '../styles/pages/Fuentes.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -40,14 +40,16 @@ const etiquetas = {
     fountain: 'Fuente ornamental',
 };
 
+const formatoRadio = (r) => (r >= 1000 ? `${(r / 1000).toFixed(1)} km` : `${r} m`);
+
 export default function Fuentes() {
     const [pos, setPos] = useState(UBICACION_DEFAULT);
     const [busqueda, setBusqueda] = useState('');
     const [fuentes, setFuentes] = useState([]);
-    const [cargando, setCargando] = useState(false);
+    const [cargando, setCargando] = useState(true);
     const [error, setError] = useState('');
+    const [nota, setNota] = useState('');
     const [radio, setRadio] = useState(3000); // 3km por defecto
-    const [ubicacionInicial, setUbicacionInicial] = useState(false);
 
     const cargar = async (centro = pos, r = radio) => {
         setCargando(true);
@@ -55,50 +57,53 @@ export default function Fuentes() {
         try {
             const resultado = await buscarFuentes({ lat: centro.lat, lng: centro.lng, radio: r });
             setFuentes(resultado);
-            if (!resultado.length) setError(`No se encontraron fuentes en ${Math.round(r/1000)}km a la redonda.`);
+            if (!resultado.length) setError(`No se encontraron fuentes en ${formatoRadio(r)} a la redonda.`);
+        } catch {
+            setError('El servicio de fuentes de agua no está disponible en este momento. Intenta de nuevo en unos segundos.');
         } finally {
             setCargando(false);
         }
     };
 
-    // Auto-ubicación al cargar la página
+    // Auto-ubicacion al cargar la pagina - SE EJECUTA AUTOMATICAMENTE
+    // El ref evita que StrictMode dispare dos peticiones de geolocalizacion.
+    const inicioRef = useRef(false);
+
     useEffect(() => {
-        if (!ubicacionInicial) {
-            if (navigator.geolocation) {
-                setCargando(true);
-                const timeoutId = setTimeout(() => {
-                    setUbicacionInicial(true);
-                    setError('La geolocalización tardó demasiado. Puedes buscar manualmente o hacer clic en "Mi ubicación".');
-                    setCargando(false);
-                }, 12000);
-                navigator.geolocation.getCurrentPosition(
-                    async (posActual) => {
-                        clearTimeout(timeoutId);
-                        const centro = { 
-                            lat: posActual.coords.latitude, 
-                            lng: posActual.coords.longitude, 
-                            nombre: 'Tu ubicación' 
-                        };
-                        setPos(centro);
-                        setUbicacionInicial(true);
-                        await cargar(centro, 3000);
-                    },
-                    () => {
-                        clearTimeout(timeoutId);
-                        setUbicacionInicial(true);
-                        setError('No se pudo obtener tu ubicación. Puedes buscar manualmente o hacer clic en "Mi ubicación".');
-                        setCargando(false);
-                    },
-                    { enableHighAccuracy: true, timeout: 10000 }
-                );
-            } else {
-                setUbicacionInicial(true);
-                setError('Tu navegador no soporta geolocalización. Puedes buscar manualmente.');
-            }
+        if (inicioRef.current) return undefined;
+        inicioRef.current = true;
+
+        const buscarPorDefecto = (mensaje) => {
+            if (mensaje) setNota(mensaje);
+            // Sin ubicacion igual se consulta: la pagina nunca queda vacia.
+            cargar(UBICACION_DEFAULT, 3000);
+        };
+
+        if (!navigator.geolocation) {
+            buscarPorDefecto('Tu navegador no permite la geolocalización. Mostramos fuentes cerca de Bogotá.');
+            return undefined;
         }
-    }, [ubicacionInicial]);
+
+        navigator.geolocation.getCurrentPosition(
+            async (posActual) => {
+                const centro = {
+                    lat: posActual.coords.latitude,
+                    lng: posActual.coords.longitude,
+                    nombre: 'Tu ubicación'
+                };
+                setPos(centro);
+                await cargar(centro, 3000); // Buscar en 3km automaticamente
+            },
+            () => {
+                buscarPorDefecto('No se pudo obtener tu ubicación. Mostramos fuentes cerca de Bogotá.');
+            },
+            { enableHighAccuracy: true, timeout: 10000 }
+        );
+        return undefined;
+    }, []);
 
     const usarMiUbicacion = () => {
+        setNota('');
         if (!navigator.geolocation) {
             setError('Tu navegador no soporta geolocalización');
             return;
@@ -124,6 +129,7 @@ export default function Fuentes() {
     const buscarDireccion = async (e) => {
         e.preventDefault();
         if (!busqueda.trim()) return;
+        setNota('');
         setCargando(true);
         setError('');
         try {
@@ -136,10 +142,24 @@ export default function Fuentes() {
         }
     };
 
+    // El deslizador dispara un evento por cada paso: sin espera, arrastrarlo
+    // lanzaria una consulta a OpenStreetMap tras otra.
+    const radioTimer = useRef(null);
+
+    useEffect(() => () => {
+        if (radioTimer.current) clearTimeout(radioTimer.current);
+    }, []);
+
     const cambiarRadio = (e) => {
         const nuevo = Number(e.target.value);
+        const centroActual = pos;
         setRadio(nuevo);
-        cargar(pos, nuevo);
+
+        if (radioTimer.current) clearTimeout(radioTimer.current);
+        radioTimer.current = setTimeout(() => {
+            radioTimer.current = null;
+            cargar(centroActual, nuevo);
+        }, 700);
     };
 
     return (
@@ -167,19 +187,19 @@ export default function Fuentes() {
                         Mi ubicación
                     </button>
 
-                    <button className="btn-primary" onClick={() => cargar(pos, 3000)} disabled={cargando}>
+                    <button className="btn-primary" onClick={() => cargar(pos, radio)} disabled={cargando}>
                         <i className="fa-solid fa-droplet"></i>
-                        Buscar en 3km
+                        Buscar en {formatoRadio(radio)}
                     </button>
 
                     <label className="radio-control">
-                        Radio: {radio >= 1000 ? `${(radio / 1000).toFixed(1)} km` : `${radio} m`}
+                        Radio: {formatoRadio(radio)}
                         <input type="range" min="500" max="8000" step="500" value={radio} onChange={cambiarRadio} />
                     </label>
                 </div>
             </div>
 
-            {error && <div className="info-msg">{error}</div>}
+            {nota && <div className="info-msg">{nota}</div>}
 
             <div className="mapa-wrap">
                 <MapContainer center={[pos.lat, pos.lng]} zoom={13} className="mapa" scrollWheelZoom>
@@ -197,7 +217,7 @@ export default function Fuentes() {
                     />
 
                     <Marker position={[pos.lat, pos.lng]} icon={ICONO_USER}>
-                        <Popup>Tu ubicación</Popup>
+                        <Popup>{pos.nombre || 'Tu ubicación'}</Popup>
                     </Marker>
 
                     {fuentes.map(f => (
@@ -215,12 +235,17 @@ export default function Fuentes() {
 
             <div className="fuentes-panel">
                 <h2>
-                    Fuentes encontradas en {Math.round(radio/1000)}km
+                    Fuentes encontradas en {formatoRadio(radio)}
                     {!cargando && fuentes.length > 0 && <span className="contador">{fuentes.length}</span>}
                 </h2>
 
                 {cargando ? (
                     <div className="cargando"><i className="fa-solid fa-spinner fa-spin"></i> Consultando OpenStreetMap...</div>
+                ) : error ? (
+                    <div className="empty-state">
+                        <i className="fa-solid fa-map-location-dot"></i>
+                        <p>{error}</p>
+                    </div>
                 ) : fuentes.length === 0 ? (
                     <div className="empty-state">
                         <i className="fa-solid fa-map-location-dot"></i>

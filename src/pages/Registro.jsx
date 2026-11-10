@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
-import { enviarCodigo, generarCodigo, guardarCodigo } from '../services/emailService';
+import { enviarCodigo, generarCodigo, guardarCodigo, correoValido } from '../services/emailService';
 import CampoPassword from '../components/CampoPassword';
 import SocialButtons from '../components/SocialButtons';
 
@@ -53,7 +53,7 @@ export default function Registro() {
             setError('Escribe tu nombre completo');
             return;
         }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.trim())) {
+        if (!correoValido(correo)) {
             setError('El correo no tiene un formato válido');
             return;
         }
@@ -84,12 +84,17 @@ export default function Registro() {
                 tipo: 'verificacion'
             });
 
-            if (envio.error) {
-                setError(envio.error);
-                return;
-            }
-
-            navigate('/verificacion', { state: { correo: correo.trim(), tipo: 'verificacion' } });
+            // El correo no bloquea el registro: la cuenta ya existe y el código
+            // quedó guardado, así que se puede reenviar desde la verificación.
+            navigate('/verificacion', {
+                state: {
+                    correo: correo.trim(),
+                    tipo: 'verificacion',
+                    aviso: envio.error
+                        ? 'Tu cuenta se creó correctamente, pero aún no pudimos enviarte el correo. Usa «Reenviar» en unos minutos.'
+                        : ''
+                }
+            });
         } catch {
             setError('Error de conexión con el servidor');
         } finally {
