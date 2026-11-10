@@ -10,6 +10,10 @@ const ENLACES = [
     { to: '/chat', texto: 'Chat', icono: 'fa-comments' },
 ];
 
+/* En la barra superior solo se muestran tres enlaces centrados.
+   "Encontrar agua" y la sesion viven en el menu hamburguesa. */
+const ENLACES_CIMA = ENLACES.filter(e => e.to !== '/fuentes');
+
 export default function Navbar() {
     const { usuario, logout } = useAuth();
     const [menuAbierto, setMenuAbierto] = useState(false);
@@ -39,26 +43,12 @@ export default function Navbar() {
                 </div>
 
                 <nav className="nav-desktop">
-                    {ENLACES.map(e => (
-                        <span key={e.to} className="badge">
+                    {ENLACES_CIMA.map(e => (
+                        <span key={e.to} className="nav-item">
                             <Link to={e.to}>{e.texto}</Link>
                         </span>
                     ))}
                 </nav>
-
-                <div className="auth">
-                    {usuario ? (
-                        <div className="user-info">
-                            <span className="user-name">{usuario.nombre}</span>
-                            <button className="btn-outline" onClick={logout}>Cerrar sesión</button>
-                        </div>
-                    ) : (
-                        <>
-                            <Link to="/login"><button className="btn-outline">Iniciar sesión</button></Link>
-                            <Link to="/registro"><button className="btn-primary">Registrarse</button></Link>
-                        </>
-                    )}
-                </div>
 
                 <button
                     className="nav-toggle"

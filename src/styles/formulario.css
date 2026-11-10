@@ -44,6 +44,16 @@
     box-shadow: 0 0 0 4px rgba(61, 173, 174, 0.15);
 }
 
+/* Reserva el espacio de los iconos: la regla general de arriba, al llegar
+   despues, se comia el padding y el icono quedaba encima del texto */
+.form-container .campo-input input {
+    padding-left: 40px;
+}
+
+.form-container .campo-password input {
+    padding-right: 46px;
+}
+
 .form-container button[type="submit"] {
     width: 100%;
     padding: 14px;
@@ -271,5 +281,52 @@
     .form-beneficios li {
         font-size: 12px;
         padding: 6px 10px;
+    }
+}
+
+/* Tabletas: tarjeta mas amplia y espaciado mas comodo */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .auth-background .form-container {
+        width: min(520px, 92vw);
+        max-width: 520px;
+        padding: 40px 44px;
+        margin: 24px auto;
+    }
+
+    .form-container h2 {
+        font-size: 26px;
+    }
+
+    .form-container .sub {
+        margin-bottom: 24px;
+    }
+
+    .form-emblema {
+        width: 64px;
+        height: 64px;
+        font-size: 26px;
+        margin-bottom: 14px;
+    }
+
+    .form-beneficios {
+        margin-top: 24px;
+        padding-top: 20px;
+    }
+
+    .form-beneficios li {
+        font-size: 14px;
+        padding: 9px 12px;
+    }
+
+    .divisor-social,
+    .social {
+        margin-top: 18px;
+        margin-bottom: 18px;
+    }
+
+    .form-container input,
+    .campo-input input,
+    .campo-password input {
+        font-size: 16px; /* evita el zoom automatico de iOS al enfocar */
     }
 }
